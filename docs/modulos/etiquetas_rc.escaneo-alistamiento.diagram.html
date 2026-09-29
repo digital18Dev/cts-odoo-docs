@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Escaneo en Alistamiento</title>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Geist', system-ui, sans-serif; background: #f5f5f5; color: #2d3142; min-height: 100vh;
+           display: flex; align-items: center; justify-content: center; padding: 2rem 2rem; }
+    .frame { max-width: 1240px; width: 100%; }
+    .eyebrow { font-family: 'Geist Mono', ui-monospace, monospace; font-size: 0.66rem; font-weight: 500;
+               letter-spacing: 0.18em; text-transform: uppercase; color: #4f5d75; margin-bottom: 0.5rem; }
+    h1 { font-family: 'Instrument Serif', serif; font-size: clamp(1.5rem, 2.4vw + 0.75rem, 2rem); font-weight: 400;
+         letter-spacing: -0.02em; line-height: 1.15; margin-bottom: 1rem; }
+    svg { width: 100%; min-width: 720px; display: block; }
+  </style>
+</head>
+<body>
+  <main class="frame">
+    <p class="eyebrow">Flowchart · resolve_rc_scan · fit · faithful</p>
+    <h1>Escaneo en Alistamiento</h1>
+    <svg viewBox="0 0 860 790" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="rc-scan-title rc-scan-desc">
+<title id="rc-scan-title">Escaneo en Alistamiento</title>
+<desc id="rc-scan-desc">resolve_rc_scan valida el formato [LSN] más dígitos, busca primero una unidad ya recibida (stock.lot.item para L y S, stock.reception.record para N) y, si no existe, una etiqueta propia de Alistamiento con purchase_line_id vacío. Rechaza etiquetas ya escaneadas o usadas y líneas sin demanda o fuera de pantalla; si todo pasa, escribe in_progress.</desc>
+<defs><marker id="rc-scan-arrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#4f5d75"/></marker><marker id="rc-scan-arrow-accent" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#eb6c36"/></marker></defs>
+<rect width="100%" height="100%" fill="#f5f5f5"/>
+<text x="40" y="45" fill="#2d3142" font-size="10" font-weight="600" font-family="'Geist Mono', monospace" letter-spacing="0.14em">LEYENDA</text><rect x="128" y="32" width="36" height="18" rx="3" fill="rgba(79,93,117,0.12)" stroke="#7a8399" stroke-width="1"/><rect x="128" y="32" width="4" height="18" fill="#4f5d75"/><text x="172" y="45" fill="#2d3142" font-size="11" font-family="'Geist', sans-serif">Entrada</text><polygon points="259.4,31 277.4,41 259.4,51 241.4,41" fill="#ffffff" stroke="#2d3142" stroke-width="1"/><text x="285.4" y="45" fill="#2d3142" font-size="11" font-family="'Geist', sans-serif">Decisión</text><rect x="361.0" y="32" width="36" height="18" rx="6" fill="#ffffff" stroke="#7a8399" stroke-width="1"/><text x="405.0" y="45" fill="#2d3142" font-size="11" font-family="'Geist', sans-serif">Respuesta</text><path d="M486.8,32 A14,4 0 0 1 514.8,32 V48 A14,4 0 0 1 486.8,48 Z" fill="rgba(235,108,54,0.10)" stroke="#eb6c36" stroke-width="1.2"/><path d="M486.8,32 A14,4 0 0 0 514.8,32" fill="none" stroke="#eb6c36" stroke-width="1.2"/><text x="522.8" y="45" fill="#2d3142" font-size="11" font-family="'Geist', sans-serif">Unidad RC</text><rect x="604.6" y="32" width="36" height="18" rx="9" fill="rgba(45,49,66,0.05)" stroke="#4f5d75" stroke-width="1"/><text x="648.6" y="45" fill="#2d3142" font-size="11" font-family="'Geist', sans-serif">Estado</text><line x1="40" y1="72" x2="820" y2="72" stroke="rgba(45,49,66,0.12)" stroke-width="0.8"/>
+<g transform="translate(0,0)">
+<path d="M300,144 V156" fill="none" stroke="#4f5d75" stroke-width="1.2" marker-end="url(#rc-scan-arrow)"/>
+<path d="M300,234 V260" fill="none" stroke="#4f5d75" stroke-width="1.2" marker-end="url(#rc-scan-arrow)"/>
+<path d="M300,338 V364" fill="none" stroke="#4f5d75" stroke-width="1.2" marker-end="url(#rc-scan-arrow)"/>
+<path d="M300,442 V468" fill="none" stroke="#4f5d75" stroke-width="1.2" marker-end="url(#rc-scan-arrow)"/>
+<path d="M300,546 V572" fill="none" stroke="#4f5d75" stroke-width="1.2" marker-end="url(#rc-scan-arrow)"/>
+<path d="M300,650 V688" fill="none" stroke="#4f5d75" stroke-width="1.2" marker-end="url(#rc-scan-arrow)"/>
+<path d="M418,196 H558" fill="none" stroke="#4f5d75" stroke-width="1.2" marker-end="url(#rc-scan-arrow)"/>
+<path d="M418,300 H558" fill="none" stroke="#4f5d75" stroke-width="1.2" marker-end="url(#rc-scan-arrow)"/>
+<path d="M418,404 H558" fill="none" stroke="#4f5d75" stroke-width="1.2" marker-end="url(#rc-scan-arrow)"/>
+<path d="M418,508 H558" fill="none" stroke="#4f5d75" stroke-width="1.2" marker-end="url(#rc-scan-arrow)"/>
+<path d="M418,612 H558" fill="none" stroke="#4f5d75" stroke-width="1.2" marker-end="url(#rc-scan-arrow)"/>
+<rect x="310" y="242" width="16" height="12" fill="#f5f5f5"/><text x="312" y="251" fill="#2d3142" font-size="9" font-weight="600" font-family="'Geist Mono', monospace" text-anchor="start" letter-spacing="0.06em">SÍ</text>
+<rect x="310" y="346" width="16" height="12" fill="#f5f5f5"/><text x="312" y="355" fill="#2d3142" font-size="9" font-weight="600" font-family="'Geist Mono', monospace" text-anchor="start" letter-spacing="0.06em">NO</text>
+<rect x="310" y="450" width="16" height="12" fill="#f5f5f5"/><text x="312" y="459" fill="#2d3142" font-size="9" font-weight="600" font-family="'Geist Mono', monospace" text-anchor="start" letter-spacing="0.06em">SÍ</text>
+<rect x="310" y="554" width="16" height="12" fill="#f5f5f5"/><text x="312" y="563" fill="#2d3142" font-size="9" font-weight="600" font-family="'Geist Mono', monospace" text-anchor="start" letter-spacing="0.06em">NO</text>
+<rect x="310" y="657" width="76" height="12" fill="#f5f5f5"/><text x="312" y="666" fill="#2d3142" font-size="9" font-weight="600" font-family="'Geist Mono', monospace" text-anchor="start" letter-spacing="0.06em">SÍ · ESCRIBE</text><rect x="310" y="669" width="97" height="11" fill="#f5f5f5"/><text x="312" y="677" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace" text-anchor="start">state = in_progress</text>
+<rect x="480" y="179" width="16" height="12" fill="#f5f5f5"/><text x="488" y="188" fill="#2d3142" font-size="9" font-weight="600" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.06em">NO</text>
+<rect x="480" y="283" width="16" height="12" fill="#f5f5f5"/><text x="488" y="292" fill="#2d3142" font-size="9" font-weight="600" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.06em">SÍ</text>
+<rect x="480" y="387" width="16" height="12" fill="#f5f5f5"/><text x="488" y="396" fill="#2d3142" font-size="9" font-weight="600" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.06em">NO</text>
+<rect x="480" y="491" width="16" height="12" fill="#f5f5f5"/><text x="488" y="500" fill="#2d3142" font-size="9" font-weight="600" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.06em">SÍ</text>
+<rect x="480" y="595" width="16" height="12" fill="#f5f5f5"/><text x="488" y="604" fill="#2d3142" font-size="9" font-weight="600" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.06em">NO</text>
+<rect x="72" y="288" width="102" height="11" fill="#f5f5f5"/><text x="172" y="296" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace" text-anchor="end">L/S → stock.lot.item</text><rect x="43" y="299" width="131" height="11" fill="#f5f5f5"/><text x="172" y="307" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace" text-anchor="end">N → stock.reception.record</text>
+<rect x="62" y="388" width="112" height="11" fill="#f5f5f5"/><text x="172" y="396" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace" text-anchor="end">stock.rc.label.pending</text><rect x="72" y="399" width="102" height="11" fill="#f5f5f5"/><text x="172" y="407" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace" text-anchor="end">mismo código y letra</text><rect x="52" y="410" width="122" height="11" fill="#f5f5f5"/><text x="172" y="418" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace" text-anchor="end">purchase_line_id = False</text>
+<rect x="82" y="492" width="92" height="11" fill="#f5f5f5"/><text x="172" y="500" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace" text-anchor="end">state in_progress,</text><rect x="67" y="503" width="107" height="11" fill="#f5f5f5"/><text x="172" y="511" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace" text-anchor="end">consumed o cancelled,</text><rect x="47" y="514" width="127" height="11" fill="#f5f5f5"/><text x="172" y="522" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace" text-anchor="end">o sin requisition_item_id</text>
+<rect x="72" y="596" width="102" height="11" fill="#f5f5f5"/><text x="172" y="604" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace" text-anchor="end">_demanda_gestion &gt; 0</text><rect x="47" y="607" width="127" height="11" fill="#f5f5f5"/><text x="172" y="615" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace" text-anchor="end">y en context_material_ids</text>
+<text x="300" y="756" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace" text-anchor="middle">no crea unidad · reversible con release_in_progress</text>
+<text x="300" y="768" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace" text-anchor="middle">confirm_alistamiento la pasa a consumed</text>
+<rect x="190" y="96" width="220" height="48" rx="3" fill="#f5f5f5"/><rect x="190" y="96" width="220" height="48" rx="3" fill="rgba(79,93,117,0.12)" stroke="#7a8399" stroke-width="1"/><rect x="190" y="96" width="4" height="48" fill="#4f5d75"/><text x="302.0" y="116.0" fill="#2d3142" font-size="13" font-weight="600" font-family="'Geist', sans-serif" text-anchor="middle">Código escaneado</text><text x="302.0" y="132.0" fill="#4f5d75" font-size="9" font-family="'Geist Mono', monospace" text-anchor="middle">resolve_rc_scan(barcode)</text>
+<polygon points="300,158.0 418.0,196 300,234.0 182.0,196" fill="#ffffff" stroke="#2d3142" stroke-width="1.2"/><text x="300" y="193" fill="#2d3142" font-size="12" font-weight="600" font-family="'Geist', sans-serif" text-anchor="middle">¿Formato RC?</text><text x="300" y="207" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace" text-anchor="middle">[LSN] + dígitos</text>
+<polygon points="300,262.0 418.0,300 300,338.0 182.0,300" fill="#ffffff" stroke="#2d3142" stroke-width="1.2"/><text x="300" y="304" fill="#2d3142" font-size="12" font-weight="600" font-family="'Geist', sans-serif" text-anchor="middle">¿Unidad ya recibida?</text>
+<polygon points="300,366.0 418.0,404 300,442.0 182.0,404" fill="#ffffff" stroke="#2d3142" stroke-width="1.2"/><text x="300" y="401" fill="#2d3142" font-size="12" font-weight="600" font-family="'Geist', sans-serif" text-anchor="middle">¿Etiqueta propia</text><text x="300" y="415" fill="#2d3142" font-size="12" font-weight="600" font-family="'Geist', sans-serif" text-anchor="middle">de Alistamiento?</text>
+<polygon points="300,470.0 418.0,508 300,546.0 182.0,508" fill="#ffffff" stroke="#2d3142" stroke-width="1.2"/><text x="300" y="505" fill="#2d3142" font-size="12" font-weight="600" font-family="'Geist', sans-serif" text-anchor="middle">¿Ya escaneada</text><text x="300" y="519" fill="#2d3142" font-size="12" font-weight="600" font-family="'Geist', sans-serif" text-anchor="middle">o usada?</text>
+<polygon points="300,574.0 418.0,612 300,650.0 182.0,612" fill="#ffffff" stroke="#2d3142" stroke-width="1.2"/><text x="300" y="609" fill="#2d3142" font-size="12" font-weight="600" font-family="'Geist', sans-serif" text-anchor="middle">¿Línea con demanda</text><text x="300" y="623" fill="#2d3142" font-size="12" font-weight="600" font-family="'Geist', sans-serif" text-anchor="middle">y en pantalla?</text>
+<rect x="220" y="690" width="160" height="48" rx="24.0" fill="#f5f5f5"/><rect x="220" y="690" width="160" height="48" rx="24.0" fill="rgba(45,49,66,0.05)" stroke="#4f5d75" stroke-width="1"/><text x="300.0" y="710.0" fill="#2d3142" font-size="13" font-weight="600" font-family="'Geist', sans-serif" text-anchor="middle">Escaneada</text><text x="300.0" y="726.0" fill="#4f5d75" font-size="9" font-family="'Geist Mono', monospace" text-anchor="middle">in_progress</text>
+<rect x="560" y="172" width="240" height="48" rx="6" fill="#ffffff" stroke="#7a8399" stroke-width="1"/><text x="680.0" y="192.0" fill="#2d3142" font-size="13" font-weight="600" font-family="'Geist', sans-serif" text-anchor="middle">No es un código RC</text><text x="680.0" y="208.0" fill="#4f5d75" font-size="9" font-family="'Geist Mono', monospace" text-anchor="middle">found: False · se trata como producto</text>
+<path d="M560,272 A120.0,8 0 0 1 800,272 V328 A120.0,8 0 0 1 560,328 Z" fill="#f5f5f5"/><path d="M560,272 A120.0,8 0 0 1 800,272 V328 A120.0,8 0 0 1 560,328 Z" fill="rgba(235,108,54,0.10)" stroke="#eb6c36" stroke-width="1.4"/><path d="M560,272 A120.0,8 0 0 0 800,272" fill="none" stroke="#eb6c36" stroke-width="1.4"/><text x="680.0" y="294.0" fill="#2d3142" font-size="13" font-weight="600" font-family="'Geist', sans-serif" text-anchor="middle">Unidad RC recibida</text><text x="680.0" y="310.0" fill="#4f5d75" font-size="9" font-family="'Geist Mono', monospace" text-anchor="middle">viene de Recepción</text><text x="680.0" y="321.0" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace" text-anchor="middle">devuelve su trazabilidad</text>
+<rect x="560" y="380" width="240" height="48" rx="6" fill="#ffffff" stroke="#7a8399" stroke-width="1"/><text x="680.0" y="400.0" fill="#2d3142" font-size="13" font-weight="600" font-family="'Geist', sans-serif" text-anchor="middle">No encontrada</text><text x="680.0" y="416.0" fill="#4f5d75" font-size="9" font-family="'Geist Mono', monospace" text-anchor="middle">found: False</text>
+<rect x="560" y="484" width="240" height="48" rx="6" fill="#ffffff" stroke="#7a8399" stroke-width="1"/><text x="680.0" y="504.0" fill="#2d3142" font-size="13" font-weight="600" font-family="'Geist', sans-serif" text-anchor="middle">Ya usada</text><text x="680.0" y="520.0" fill="#4f5d75" font-size="9" font-family="'Geist Mono', monospace" text-anchor="middle">already_used: True</text>
+<rect x="560" y="588" width="240" height="48" rx="6" fill="#ffffff" stroke="#7a8399" stroke-width="1"/><text x="680.0" y="608.0" fill="#2d3142" font-size="13" font-weight="600" font-family="'Geist', sans-serif" text-anchor="middle">No se registra</text><text x="680.0" y="624.0" fill="#4f5d75" font-size="9" font-family="'Geist Mono', monospace" text-anchor="middle">found: False</text>
+</g>
+</svg>
+  </main>
+</body>
+</html>

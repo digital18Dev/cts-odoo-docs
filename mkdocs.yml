@@ -1,0 +1,89 @@
+site_name: CTS Odoo Docs
+site_description: Portal técnico y funcional de Odoo y sus procesos relacionados.
+
+theme:
+  name: material
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: Cambiar a modo oscuro
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-4
+        name: Cambiar a modo claro
+  features:
+    - navigation.sections
+    - navigation.top
+    - search.suggest
+    - content.code.copy
+
+extra_css:
+  - https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500;600&display=swap
+  - stylesheets/extra.css
+
+extra_javascript:
+  - https://cdn.jsdelivr.net/npm/mermaid@11.4.1/dist/mermaid.min.js
+  - javascripts/diagrams.js
+
+markdown_extensions:
+  - admonition
+  - md_in_html
+  - pymdownx.details
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.superfences:
+      custom_fences:
+        # Class "diagram" (not "mermaid") so Material leaves it for diagrams.js,
+        # which renders outside a closed shadow root and supports click-to-zoom.
+        - name: mermaid
+          class: diagram
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - toc:
+      permalink: true
+
+nav:
+  - Inicio: index.md
+  - Guía de navegación: guia.md
+  - Arquitectura Odoo: arquitectura.md
+  - Módulos:
+      - Resumen: modulos/index.md
+      - custom_barcode_activos: modulos/custom_barcode_activos.md
+      - Etiquetas RC: modulos/etiquetas_rc.md
+      - custom_solicitudes: modulos/custom_solicitudes.md
+      - custom_sig: modulos/custom_sig.md
+      - custom_documentos_sig: modulos/custom_documentos_sig.md
+      - custom_activos_fijos: modulos/custom_activos_fijos.md
+      - custom_clientes: modulos/custom_clientes.md
+      - custom_empleados: modulos/custom_empleados.md
+      - custom_despachos: modulos/custom_despachos.md
+      - custom_compras: modulos/custom_compras.md
+      - custom_reportes: modulos/custom_reportes.md
+  - Procesos:
+      - Recepción: procesos/recepcion.md
+      - Alistamiento: procesos/alistamiento.md
+      - Entrega: procesos/entrega.md
+  - Guías operativas:
+      - Configurar impresora Zebra: guias/impresora-zebra.md
+      - Configurar lector de código de barras Zebra: guias/lector-zebra.md
+  - Modelos: modelos.md
+  - Wizards: wizards.md
+  - Vistas: vistas.md
+  - Flujos funcionales: flujos.md
+  - Historial técnico: historial.md
+  - ADR: adr.md
+  - API interna: api.md
+  - Reglas operativas (Claude):
+      - Visión general: reglas/index.md
+      - Reglas generales del repo: reglas/claude.md
+      - Alistamiento / Separación: reglas/alistamiento.md
+      - Código único RC: reglas/barcode-rc.md
+      - custom_solicitudes: reglas/custom-solicitudes.md
+      - Odoo 17 — desarrollo: reglas/odoo-development.md
+      - Recepción: reglas/recepcion.md

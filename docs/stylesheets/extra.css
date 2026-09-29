@@ -1,0 +1,97 @@
+/* Wider than the 61rem default for dense tables, but short enough to keep lines readable. */
+.md-grid {
+  max-width: 72rem;
+}
+
+.md-typeset div.diagram {
+  margin: 1.6em 0;
+  padding: 1.5em 1em;
+  border-top: 1px solid var(--md-default-fg-color--lightest);
+  border-bottom: 1px solid var(--md-default-fg-color--lightest);
+  text-align: center;
+  overflow-x: auto;
+  cursor: zoom-in;
+}
+
+.md-typeset div.diagram svg {
+  height: auto;
+}
+
+/* Hand-drawn diagrams carry their own light paper background. */
+.md-typeset div.diagram.diagram--static {
+  padding: 0;
+  border: 1px solid var(--md-default-fg-color--lightest);
+  border-radius: 0.2rem;
+  overflow: hidden;
+}
+
+.md-typeset div.diagram.diagram--static svg {
+  display: block;
+  width: 100%;
+}
+
+.md-typeset div.diagram.diagram--error {
+  cursor: default;
+  text-align: left;
+  color: var(--md-typeset-color);
+  font-family: var(--md-code-font-family);
+}
+
+.diagram-zoom {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: var(--md-default-bg-color);
+}
+
+.diagram-zoom__stage {
+  position: absolute;
+  inset: 3.5rem 1rem 1rem;
+  overflow: hidden;
+  cursor: grab;
+  touch-action: none;
+}
+
+.diagram-zoom__stage.is-dragging {
+  cursor: grabbing;
+}
+
+.diagram-zoom__stage svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  max-width: none;
+  transform-origin: 0 0;
+}
+
+.diagram-zoom__bar {
+  position: absolute;
+  top: 0.75rem;
+  right: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--md-default-fg-color--light);
+  font-size: 0.7rem;
+}
+
+.diagram-zoom__bar span {
+  margin-right: 0.5rem;
+}
+
+.diagram-zoom__bar button {
+  min-width: 2rem;
+  height: 2rem;
+  padding: 0 0.6rem;
+  border: 1px solid var(--md-default-fg-color--lighter);
+  border-radius: 0.2rem;
+  background: none;
+  color: var(--md-default-fg-color);
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+.diagram-zoom__bar button:hover {
+  border-color: var(--md-accent-fg-color);
+  color: var(--md-accent-fg-color);
+}

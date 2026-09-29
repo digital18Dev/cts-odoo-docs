@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Asignación de productos al empleado</title>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --color-paper:   #f5f5f5;
+      --color-ink:     #2d3142;
+      --color-muted:   #4f5d75;
+      --color-accent:  #eb6c36;
+      --font-sans:     'Geist', system-ui, sans-serif;
+      --font-serif:    'Instrument Serif', serif;
+      --font-mono:     'Geist Mono', ui-monospace, monospace;
+    }
+    body {
+      font-family: var(--font-sans);
+      background: var(--color-paper);
+      color: var(--color-ink);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 2rem;
+    }
+    .frame { max-width: 1240px; width: 100%; }
+    .eyebrow {
+      font-family: var(--font-mono);
+      font-size: 0.66rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--color-muted);
+      margin-bottom: 0.5rem;
+    }
+    h1 {
+      font-family: var(--font-serif);
+      font-size: clamp(1.5rem, 2.4vw + 0.75rem, 2rem);
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      color: var(--color-ink);
+      margin-bottom: 1rem;
+    }
+    svg { width: 100%; min-width: 960px; display: block; }
+  </style>
+</head>
+<body>
+  <main class="frame">
+    <p class="eyebrow">Architecture · flujos · fit · faithful</p>
+    <h1>Asignación de productos al empleado (OLI / TIC)</h1>
+
+    <svg viewBox="0 0 1168 856" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="asig-title asig-desc">
+      <title id="asig-title">Asignación de productos al empleado (OLI / TIC)</title>
+      <desc id="asig-desc">La solicitud asignacion.request se aprueba con action_aprobar_oli en asignacion.aprobacion.wizard, que pasa por asignacion.marcador.wizard si hay kits, crea el OUT de asignación con _crear_pickings_out y cambia la fase de la solicitud. Al validar el OUT, _procesar_asignacion_post_validate registra lo entregado en asignacion.empleado.asignado y cierra la solicitud en fase 4; si la OLI nació de una TIC, _propagar_cantidades_a_tic actualiza la TIC origen. Desde lo asignado se crea el picking de devolución, pasando por asignacion.kit.devolucion.wizard si son kits; su validación ejecuta _procesar_devolucion_post_validate. Aparte, una recepción manual en bodega con solicitudes_dev y sin solicitud crea al validarse un asignacion.devolucion DEV&lt;aa&gt;-NNNN con _procesar_devolucion_bodega.</desc>
+      <defs>
+        <marker id="asig-arrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#4f5d75"/></marker>
+        <marker id="asig-arrow-accent" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#eb6c36"/></marker>
+      </defs>
+
+      <rect width="100%" height="100%" fill="#f5f5f5"/>
+
+      <!-- ========== Legend strip (top) ========== -->
+      <text x="40" y="44" fill="#2d3142" font-size="10" font-weight="600" font-family="'Geist Mono', monospace" letter-spacing="0.14em">LEYENDA</text>
+
+      <!-- Estado / fase -->
+      <rect x="128" y="32" width="36" height="18" rx="9" fill="rgba(45,49,66,0.05)" stroke="#4f5d75" stroke-width="1"/>
+      <text x="172" y="45" fill="#2d3142" font-size="11" font-family="'Geist', sans-serif">Estado / fase</text>
+
+      <!-- Modelo con datos -->
+      <path d="M268,32 A14,4 0 0 1 296,32 V48 A14,4 0 0 1 268,48 Z" fill="rgba(235,108,54,0.10)" stroke="#eb6c36" stroke-width="1.2"/>
+      <path d="M268,32 A14,4 0 0 0 296,32" fill="none" stroke="#eb6c36" stroke-width="1.2"/>
+      <text x="304" y="45" fill="#2d3142" font-size="11" font-family="'Geist', sans-serif">Modelo con datos</text>
+
+      <!-- Documento stock.picking -->
+      <path d="M420,30 H434 L440,36 V50 H420 Z" fill="#ffffff" stroke="#2d3142" stroke-width="1"/>
+      <path d="M434,30 V36 H440" fill="none" stroke="#2d3142" stroke-width="1"/>
+      <text x="448" y="45" fill="#2d3142" font-size="11" font-family="'Geist', sans-serif">Documento <tspan font-family="'Geist Mono', monospace" font-size="10" fill="#4f5d75">stock.picking</tspan></text>
+
+      <!-- Origen -->
+      <rect x="600" y="32" width="36" height="18" rx="3" fill="rgba(79,93,117,0.12)" stroke="#7a8399" stroke-width="1"/>
+      <rect x="600" y="32" width="4" height="18" fill="#4f5d75"/>
+      <text x="644" y="45" fill="#2d3142" font-size="11" font-family="'Geist', sans-serif">Origen / entrada</text>
+
+      <!-- Proceso / wizard -->
+      <rect x="760" y="32" width="36" height="18" rx="3" fill="#ffffff" stroke="#2d3142" stroke-width="1.4"/>
+      <text x="804" y="45" fill="#2d3142" font-size="11" font-family="'Geist', sans-serif">Proceso / wizard</text>
+
+      <!-- Retorno -->
+      <line x1="916" y1="41" x2="952" y2="41" stroke="#4f5d75" stroke-width="1.2" stroke-dasharray="4,3" marker-end="url(#asig-arrow)"/>
+      <text x="960" y="45" fill="#2d3142" font-size="11" font-family="'Geist', sans-serif">Retorno</text>
+
+      <!-- Transición -->
+      <text x="1024" y="40" fill="#2d3142" font-size="9" font-weight="600" font-family="'Geist Mono', monospace" letter-spacing="0.06em">VERBO</text>
+      <text x="1024" y="51" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace">método técnico</text>
+      <text x="1100" y="45" fill="#2d3142" font-size="11" font-family="'Geist', sans-serif">Transición</text>
+
+      <line x1="40" y1="72" x2="1128" y2="72" stroke="rgba(45,49,66,0.12)" stroke-width="0.8"/>
+
+      <!-- ========== Zones ========== -->
+      <rect x="40" y="96" width="480" height="340" rx="8" fill="rgba(45,49,66,0.025)" stroke="rgba(45,49,66,0.16)" stroke-width="0.8"/>
+      <text x="56" y="116" fill="#4f5d75" font-size="10" font-weight="600" font-family="'Geist Mono', monospace" letter-spacing="0.14em">SOLICITUD Y APROBACIÓN</text>
+
+      <rect x="544" y="208" width="584" height="308" rx="8" fill="rgba(45,49,66,0.025)" stroke="rgba(45,49,66,0.16)" stroke-width="0.8"/>
+      <text x="560" y="228" fill="#4f5d75" font-size="10" font-weight="600" font-family="'Geist Mono', monospace" letter-spacing="0.14em">ENTREGA</text>
+
+      <rect x="764" y="540" width="364" height="288" rx="8" fill="rgba(45,49,66,0.025)" stroke="rgba(45,49,66,0.16)" stroke-width="0.8"/>
+      <text x="780" y="560" fill="#4f5d75" font-size="10" font-weight="600" font-family="'Geist Mono', monospace" letter-spacing="0.14em">DEVOLUCIÓN</text>
+
+      <rect x="40" y="540" width="480" height="288" rx="8" fill="rgba(45,49,66,0.025)" stroke="rgba(45,49,66,0.16)" stroke-width="0.8"/>
+      <text x="56" y="560" fill="#4f5d75" font-size="10" font-weight="600" font-family="'Geist Mono', monospace" letter-spacing="0.14em">DEVOLUCIÓN MANUAL EN BODEGA</text>
+      <text x="56" y="574" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace">aparte · picking sin asignacion_id, no pasa por la ficha</text>
+
+      <!-- ========== Connectors ========== -->
+      <!-- 1. request → aprobación wizard -->
+      <line x1="224" y1="268" x2="326" y2="268" stroke="#4f5d75" stroke-width="1.2" marker-end="url(#asig-arrow)"/>
+      <!-- 2. aprobación wizard → marcador wizard (kits) -->
+      <line x1="392" y1="240" x2="392" y2="186" stroke="#4f5d75" stroke-width="1.2" marker-end="url(#asig-arrow)"/>
+      <!-- 3. marcador wizard → aprobación wizard -->
+      <line x1="440" y1="184" x2="440" y2="238" stroke="#4f5d75" stroke-width="1.2" stroke-dasharray="5,4" marker-end="url(#asig-arrow)"/>
+      <!-- 5. aprobación wizard → solicitud aprobada -->
+      <line x1="416" y1="296" x2="416" y2="358" stroke="#4f5d75" stroke-width="1.2" marker-end="url(#asig-arrow)"/>
+      <!-- 4. aprobación wizard → OUT -->
+      <line x1="504" y1="268" x2="598" y2="268" stroke="#4f5d75" stroke-width="1.2" marker-end="url(#asig-arrow)"/>
+      <!-- 6. OUT → procesar entrega -->
+      <line x1="752" y1="268" x2="878" y2="268" stroke="#4f5d75" stroke-width="1.2" marker-end="url(#asig-arrow)"/>
+      <!-- 8. procesar entrega → finalizado -->
+      <line x1="1000" y1="296" x2="1000" y2="342" stroke="#4f5d75" stroke-width="1.2" marker-end="url(#asig-arrow)"/>
+      <!-- 7. procesar entrega → empleado asignado -->
+      <path d="M904,296 V318 Q904,326 896,326 H684 Q676,326 676,334 V550" fill="none" stroke="#eb6c36" stroke-width="1.2" marker-end="url(#asig-arrow-accent)"/>
+      <!-- 11. finalizado → TIC origen -->
+      <line x1="980" y1="392" x2="980" y2="442" stroke="#4f5d75" stroke-width="1.2" marker-end="url(#asig-arrow)"/>
+      <!-- 9. empleado asignado → devolución -->
+      <line x1="756" y1="592" x2="902" y2="592" stroke="#4f5d75" stroke-width="1.2" marker-end="url(#asig-arrow)"/>
+      <!-- 12. empleado asignado → kit devolución wizard (kits) -->
+      <path d="M676,632 V688 Q676,696 684,696 H778" fill="none" stroke="#4f5d75" stroke-width="1.2" marker-end="url(#asig-arrow)"/>
+      <!-- 13. kit devolución wizard → devolución -->
+      <line x1="924" y1="668" x2="924" y2="626" stroke="#4f5d75" stroke-width="1.2" marker-end="url(#asig-arrow)"/>
+      <!-- 10. devolución → procesar devolución -->
+      <line x1="980" y1="624" x2="980" y2="746" stroke="#4f5d75" stroke-width="1.2" marker-end="url(#asig-arrow)"/>
+      <!-- 14. recepción manual bodega → devolución de bodega -->
+      <line x1="280" y1="656" x2="280" y2="718" stroke="#4f5d75" stroke-width="1.2" marker-end="url(#asig-arrow)"/>
+
+      <!-- ========== Transition labels (verb + technical) ========== -->
+      <!-- 1 -->
+      <rect x="251" y="250" width="48" height="12" fill="#f5f5f5"/>
+      <text x="275" y="259" fill="#2d3142" font-size="9" font-weight="600" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.06em">APROBAR</text>
+      <rect x="230" y="274" width="90" height="11" fill="#f5f5f5"/>
+      <text x="275" y="282" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace" text-anchor="middle">action_aprobar_oli</text>
+
+      <!-- 2 -->
+      <text x="384" y="209" fill="#2d3142" font-size="9" font-weight="600" font-family="'Geist Mono', monospace" text-anchor="end" letter-spacing="0.06em">KITS</text>
+      <text x="384" y="221" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace" text-anchor="end">mrp.bom</text>
+
+      <!-- 5 -->
+      <text x="424" y="322" fill="#2d3142" font-size="9" font-weight="600" font-family="'Geist Mono', monospace" letter-spacing="0.06em">CAMBIA FASE</text>
+      <text x="424" y="334" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace">fase2 / fase3</text>
+
+      <!-- 4 -->
+      <rect x="532" y="250" width="40" height="12" fill="#f5f5f5"/>
+      <text x="552" y="259" fill="#2d3142" font-size="9" font-weight="600" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.06em">CREAR</text>
+      <rect x="505" y="274" width="94" height="11" fill="#f5f5f5"/>
+      <text x="552" y="282" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace" text-anchor="middle">_crear_pickings_out</text>
+
+      <!-- 6 -->
+      <rect x="790" y="250" width="52" height="12" fill="#f5f5f5"/>
+      <text x="816" y="259" fill="#2d3142" font-size="9" font-weight="600" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.06em">VALIDAR</text>
+      <rect x="755" y="274" width="122" height="22" fill="#f5f5f5"/>
+      <text x="816" y="282" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace" text-anchor="middle">button_validate</text>
+      <text x="816" y="293" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace" text-anchor="middle">firma_asignacion_empleado</text>
+
+      <!-- 8 -->
+      <text x="1008" y="316" fill="#2d3142" font-size="9" font-weight="600" font-family="'Geist Mono', monospace" letter-spacing="0.06em">CIERRE</text>
+      <text x="1008" y="328" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace">todo entregado y firmado</text>
+
+      <!-- 11 -->
+      <text x="988" y="409" fill="#2d3142" font-size="9" font-weight="600" font-family="'Geist Mono', monospace" letter-spacing="0.06em">PROPAGAR</text>
+      <text x="988" y="421" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace">_propagar_cantidades_a_tic</text>
+      <text x="988" y="432" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace">si nació de una TIC</text>
+
+      <!-- 9 -->
+      <rect x="802" y="574" width="56" height="12" fill="#f5f5f5"/>
+      <text x="830" y="583" fill="#2d3142" font-size="9" font-weight="600" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.06em">DEVOLVER</text>
+      <rect x="770" y="598" width="120" height="22" fill="#f5f5f5"/>
+      <text x="830" y="606" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace" text-anchor="middle">action_crear_devolucion_</text>
+      <text x="830" y="617" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace" text-anchor="middle">desde_lineas</text>
+
+      <!-- 12 -->
+      <text x="684" y="656" fill="#2d3142" font-size="9" font-weight="600" font-family="'Geist Mono', monospace" letter-spacing="0.06em">KITS</text>
+      <text x="684" y="668" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace">mrp.bom</text>
+
+      <!-- 10 -->
+      <text x="988" y="648" fill="#2d3142" font-size="9" font-weight="600" font-family="'Geist Mono', monospace" letter-spacing="0.06em">VALIDAR</text>
+      <text x="988" y="660" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace">button_validate</text>
+      <text x="988" y="671" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace">firma_recibido_devolucion</text>
+
+      <!-- 14 -->
+      <text x="288" y="676" fill="#2d3142" font-size="9" font-weight="600" font-family="'Geist Mono', monospace" letter-spacing="0.06em">VALIDAR</text>
+      <text x="288" y="688" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace">_procesar_devolucion_bodega</text>
+      <text x="288" y="699" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace">requiere empleado_devolucion_id</text>
+
+      <!-- ========== Nodes ========== -->
+      <!-- Origen: Solicitud -->
+      <rect x="56" y="240" width="168" height="56" rx="3" fill="#f5f5f5"/>
+      <rect x="56" y="240" width="168" height="56" rx="3" fill="rgba(79,93,117,0.12)" stroke="#7a8399" stroke-width="1"/>
+      <rect x="56" y="240" width="4" height="56" fill="#4f5d75"/>
+      <text x="142" y="261" fill="#2d3142" font-size="13" font-weight="600" font-family="'Geist', sans-serif" text-anchor="middle">Solicitud OLI / TIC</text>
+      <text x="142" y="276" fill="#4f5d75" font-size="9" font-family="'Geist Mono', monospace" text-anchor="middle">asignacion.request</text>
+      <text x="142" y="288" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace" text-anchor="middle">Fase 1 · Por revisar</text>
+
+      <!-- Proceso: marcador wizard -->
+      <rect x="336" y="128" width="160" height="56" rx="3" fill="#ffffff" stroke="#2d3142" stroke-width="1.4"/>
+      <text x="416" y="152" fill="#2d3142" font-size="13" font-weight="600" font-family="'Geist', sans-serif" text-anchor="middle">Componentes del kit</text>
+      <text x="416" y="169" fill="#4f5d75" font-size="9" font-family="'Geist Mono', monospace" text-anchor="middle">asignacion.marcador.wizard</text>
+
+      <!-- Proceso: aprobación wizard -->
+      <rect x="328" y="240" width="176" height="56" rx="3" fill="#ffffff" stroke="#2d3142" stroke-width="1.4"/>
+      <text x="416" y="264" fill="#2d3142" font-size="13" font-weight="600" font-family="'Geist', sans-serif" text-anchor="middle">Aprobación</text>
+      <text x="416" y="281" fill="#4f5d75" font-size="9" font-family="'Geist Mono', monospace" text-anchor="middle">asignacion.aprobacion.wizard</text>
+
+      <!-- Estado: solicitud aprobada -->
+      <rect x="316" y="360" width="200" height="56" rx="28" fill="#f5f5f5"/>
+      <rect x="316" y="360" width="200" height="56" rx="28" fill="rgba(45,49,66,0.05)" stroke="#4f5d75" stroke-width="1"/>
+      <text x="416" y="381" fill="#2d3142" font-size="13" font-weight="600" font-family="'Geist', sans-serif" text-anchor="middle">Solicitud aprobada</text>
+      <text x="416" y="395" fill="#4f5d75" font-size="9" font-family="'Geist Mono', monospace" text-anchor="middle">fase2_aprobado</text>
+      <text x="416" y="406" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace" text-anchor="middle">fase3_aprobado_observaciones</text>
+
+      <!-- Documento: OUT de asignación -->
+      <path d="M600,236 H740 L752,248 V300 H600 Z" fill="#ffffff" stroke="#2d3142" stroke-width="1.2"/>
+      <path d="M740,236 V248 H752" fill="none" stroke="#2d3142" stroke-width="1"/>
+      <text x="676" y="252" fill="#2e5aa8" font-size="8" font-weight="600" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.08em">STOCK.PICKING</text>
+      <text x="676" y="271" fill="#2d3142" font-size="13" font-weight="600" font-family="'Geist', sans-serif" text-anchor="middle">OUT de asignación</text>
+      <text x="676" y="287" fill="#4f5d75" font-size="9" font-family="'Geist Mono', monospace" text-anchor="middle">borrador, por almacén</text>
+
+      <!-- Proceso: procesar entrega -->
+      <rect x="880" y="240" width="200" height="56" rx="3" fill="#ffffff" stroke="#2d3142" stroke-width="1.4"/>
+      <text x="980" y="264" fill="#2d3142" font-size="13" font-weight="600" font-family="'Geist', sans-serif" text-anchor="middle">Procesar entrega</text>
+      <text x="980" y="281" fill="#4f5d75" font-size="9" font-family="'Geist Mono', monospace" text-anchor="middle">_procesar_asignacion_post_validate</text>
+
+      <!-- Estado: finalizado -->
+      <rect x="920" y="344" width="120" height="48" rx="24" fill="#f5f5f5"/>
+      <rect x="920" y="344" width="120" height="48" rx="24" fill="rgba(45,49,66,0.05)" stroke="#4f5d75" stroke-width="1"/>
+      <text x="980" y="365" fill="#2d3142" font-size="13" font-weight="600" font-family="'Geist', sans-serif" text-anchor="middle">Finalizado</text>
+      <text x="980" y="380" fill="#4f5d75" font-size="9" font-family="'Geist Mono', monospace" text-anchor="middle">fase4_finalizado</text>
+
+      <!-- Origen: TIC origen -->
+      <rect x="892" y="444" width="176" height="52" rx="3" fill="#f5f5f5"/>
+      <rect x="892" y="444" width="176" height="52" rx="3" fill="rgba(79,93,117,0.12)" stroke="#7a8399" stroke-width="1"/>
+      <rect x="892" y="444" width="4" height="52" fill="#4f5d75"/>
+      <text x="982" y="464" fill="#2d3142" font-size="13" font-weight="600" font-family="'Geist', sans-serif" text-anchor="middle">Solicitud TIC origen</text>
+      <text x="982" y="478" fill="#4f5d75" font-size="9" font-family="'Geist Mono', monospace" text-anchor="middle">asignacion.request</text>
+      <text x="982" y="489" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace" text-anchor="middle">solicitud_origen_id</text>
+
+      <!-- Modelo: empleado asignado (focal, fuera de zonas) -->
+      <path d="M596,560 A80,8 0 0 1 756,560 V624 A80,8 0 0 1 596,624 Z" fill="#f5f5f5"/>
+      <path d="M596,560 A80,8 0 0 1 756,560 V624 A80,8 0 0 1 596,624 Z" fill="rgba(235,108,54,0.10)" stroke="#eb6c36" stroke-width="1.4"/>
+      <path d="M596,560 A80,8 0 0 0 756,560" fill="none" stroke="#eb6c36" stroke-width="1.4"/>
+      <text x="676" y="590" fill="#2d3142" font-size="13" font-weight="600" font-family="'Geist', sans-serif" text-anchor="middle">Asignado al empleado</text>
+      <text x="676" y="604" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace" text-anchor="middle">asignacion.empleado.asignado</text>
+      <text x="676" y="615" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace" text-anchor="middle">cantidad_entregada</text>
+
+      <!-- Documento: devolución -->
+      <path d="M904,560 H1044 L1056,572 V624 H904 Z" fill="#ffffff" stroke="#2d3142" stroke-width="1.2"/>
+      <path d="M1044,560 V572 H1056" fill="none" stroke="#2d3142" stroke-width="1"/>
+      <text x="980" y="576" fill="#2e5aa8" font-size="8" font-weight="600" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.08em">STOCK.PICKING</text>
+      <text x="980" y="595" fill="#2d3142" font-size="13" font-weight="600" font-family="'Geist', sans-serif" text-anchor="middle">Devolución</text>
+      <text x="980" y="611" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace" text-anchor="middle">es_devolucion_asignacion=True</text>
+
+      <!-- Proceso: kit devolución wizard (solo kits) -->
+      <rect x="780" y="668" width="168" height="56" rx="3" fill="#ffffff" stroke="#2d3142" stroke-width="1.4"/>
+      <text x="864" y="689" fill="#2d3142" font-size="13" font-weight="600" font-family="'Geist', sans-serif" text-anchor="middle">Componentes a devolver</text>
+      <text x="864" y="704" fill="#4f5d75" font-size="9" font-family="'Geist Mono', monospace" text-anchor="middle">asignacion.kit.</text>
+      <text x="864" y="715" fill="#4f5d75" font-size="9" font-family="'Geist Mono', monospace" text-anchor="middle">devolucion.wizard</text>
+
+      <!-- Proceso: procesar devolución -->
+      <rect x="880" y="748" width="200" height="56" rx="3" fill="#ffffff" stroke="#2d3142" stroke-width="1.4"/>
+      <text x="980" y="769" fill="#2d3142" font-size="13" font-weight="600" font-family="'Geist', sans-serif" text-anchor="middle">Procesar devolución</text>
+      <text x="980" y="784" fill="#4f5d75" font-size="9" font-family="'Geist Mono', monospace" text-anchor="middle">_procesar_devolucion_post_validate</text>
+      <text x="980" y="796" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace" text-anchor="middle">cantidad_devuelta_total</text>
+
+      <!-- Documento: recepción manual en bodega -->
+      <path d="M180,592 H368 L380,604 V656 H180 Z" fill="#ffffff" stroke="#2d3142" stroke-width="1.2"/>
+      <path d="M368,592 V604 H380" fill="none" stroke="#2d3142" stroke-width="1"/>
+      <text x="280" y="608" fill="#2e5aa8" font-size="8" font-weight="600" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.08em">STOCK.PICKING</text>
+      <text x="280" y="627" fill="#2d3142" font-size="13" font-weight="600" font-family="'Geist', sans-serif" text-anchor="middle">Recepción manual en bodega</text>
+      <text x="280" y="643" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace" text-anchor="middle">solicitudes_dev=True · sin solicitud</text>
+
+      <!-- Modelo: devolución de bodega -->
+      <path d="M180,728 A100,8 0 0 1 380,728 V784 A100,8 0 0 1 180,784 Z" fill="#f5f5f5"/>
+      <path d="M180,728 A100,8 0 0 1 380,728 V784 A100,8 0 0 1 180,784 Z" fill="rgba(235,108,54,0.10)" stroke="#eb6c36" stroke-width="1.4"/>
+      <path d="M180,728 A100,8 0 0 0 380,728" fill="none" stroke="#eb6c36" stroke-width="1.4"/>
+      <text x="280" y="755" fill="#2d3142" font-size="13" font-weight="600" font-family="'Geist', sans-serif" text-anchor="middle">Devolución de bodega</text>
+      <text x="280" y="769" fill="#4f5d75" font-size="9" font-family="'Geist Mono', monospace" text-anchor="middle">asignacion.devolucion</text>
+      <text x="280" y="780" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace" text-anchor="middle">DEV&lt;aa&gt;-NNNN</text>
+    </svg>
+  </main>
+</body>
+</html>

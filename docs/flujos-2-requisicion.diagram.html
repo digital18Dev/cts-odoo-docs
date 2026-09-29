@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>De la requisición a la entrega</title>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --color-paper:   #f5f5f5;
+      --color-ink:     #2d3142;
+      --color-muted:   #4f5d75;
+      --color-accent:  #eb6c36;
+      --font-sans:     'Geist', system-ui, sans-serif;
+      --font-serif:    'Instrument Serif', serif;
+      --font-mono:     'Geist Mono', ui-monospace, monospace;
+    }
+    body {
+      font-family: var(--font-sans);
+      background: var(--color-paper);
+      color: var(--color-ink);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 2rem;
+    }
+    .frame { max-width: 940px; width: 100%; }
+    .eyebrow {
+      font-family: var(--font-mono);
+      font-size: 0.66rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--color-muted);
+      margin-bottom: 0.5rem;
+    }
+    h1 {
+      font-family: var(--font-serif);
+      font-size: clamp(1.5rem, 2.4vw + 0.75rem, 2rem);
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      color: var(--color-ink);
+      margin-bottom: 1rem;
+    }
+    svg { width: 100%; min-width: 720px; display: block; }
+  </style>
+</head>
+<body>
+  <main class="frame">
+    <p class="eyebrow">Architecture · flujo 2 · fit · faithful</p>
+    <h1>De la requisición a la entrega</h1>
+
+    <svg viewBox="0 0 880 752" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="req-flow-title req-flow-desc">
+      <title id="req-flow-title">De la requisición a la entrega</title>
+      <desc id="req-flow-desc">Una línea de requisición aprobada con demanda pendiente entra en la cola de Alistamiento. Con stock suficiente, confirm_alistamiento crea el OUT separado, que al escanear y validar queda entregado a la OT y puede volver por un IN de devolución, que al validarse restaura la unidad RC con _process_rc_returns. Si falta stock, se solicita compra, se crea la orden de compra, se generan etiquetas RC y al escanear y validar la recepción nace la unidad RC, que vuelve a la cola.</desc>
+      <defs>
+        <marker id="req-flow-arrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#4f5d75"/></marker>
+        <marker id="req-flow-arrow-accent" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#eb6c36"/></marker>
+      </defs>
+
+      <rect width="100%" height="100%" fill="#f5f5f5"/>
+
+      <!-- ========== Legend strip (two rows) ========== -->
+      <text x="40" y="45" fill="#2d3142" font-size="10" font-weight="600" font-family="'Geist Mono', monospace" letter-spacing="0.14em">LEYENDA</text>
+
+      <!-- Estado -->
+      <rect x="112" y="32" width="36" height="18" rx="9" fill="rgba(45,49,66,0.05)" stroke="#4f5d75" stroke-width="1"/>
+      <text x="156" y="45" fill="#2d3142" font-size="11" font-family="'Geist', sans-serif">Estado</text>
+
+      <!-- Modelo / Unidad RC -->
+      <path d="M216,32 A14,4 0 0 1 244,32 V48 A14,4 0 0 1 216,48 Z" fill="rgba(235,108,54,0.10)" stroke="#eb6c36" stroke-width="1.2"/>
+      <path d="M216,32 A14,4 0 0 0 244,32" fill="none" stroke="#eb6c36" stroke-width="1.2"/>
+      <text x="252" y="45" fill="#2d3142" font-size="11" font-family="'Geist', sans-serif">Modelo · Unidad RC</text>
+
+      <!-- Documento -->
+      <path d="M392,30 H406 L412,36 V50 H392 Z" fill="#ffffff" stroke="#2d3142" stroke-width="1"/>
+      <path d="M406,30 V36 H412" fill="none" stroke="#2d3142" stroke-width="1"/>
+      <text x="420" y="45" fill="#2d3142" font-size="11" font-family="'Geist', sans-serif">Documento <tspan font-family="'Geist Mono', monospace" font-size="10" fill="#4f5d75">purchase.order · stock.picking</tspan></text>
+
+      <!-- Origen -->
+      <rect x="112" y="58" width="36" height="18" rx="3" fill="rgba(79,93,117,0.12)" stroke="#7a8399" stroke-width="1"/>
+      <rect x="112" y="58" width="4" height="18" fill="#4f5d75"/>
+      <text x="156" y="71" fill="#2d3142" font-size="11" font-family="'Geist', sans-serif">Origen / entrada</text>
+
+      <!-- Proceso -->
+      <rect x="280" y="58" width="36" height="18" rx="3" fill="#ffffff" stroke="#2d3142" stroke-width="1.4"/>
+      <text x="324" y="71" fill="#2d3142" font-size="11" font-family="'Geist', sans-serif">Proceso / método</text>
+
+      <!-- Retorno -->
+      <line x1="452" y1="67" x2="488" y2="67" stroke="#4f5d75" stroke-width="1.2" stroke-dasharray="4,3" marker-end="url(#req-flow-arrow)"/>
+      <text x="496" y="71" fill="#2d3142" font-size="11" font-family="'Geist', sans-serif">Retorno</text>
+
+      <!-- Transición -->
+      <text x="572" y="65" fill="#2d3142" font-size="9" font-weight="600" font-family="'Geist Mono', monospace" letter-spacing="0.06em">VERBO</text>
+      <text x="572" y="76" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace">método técnico</text>
+      <text x="652" y="71" fill="#2d3142" font-size="11" font-family="'Geist', sans-serif">Transición</text>
+
+      <line x1="40" y1="92" x2="840" y2="92" stroke="rgba(45,49,66,0.12)" stroke-width="0.8"/>
+
+      <!-- ========== Zones ========== -->
+      <rect x="40" y="112" width="184" height="104" rx="8" fill="rgba(45,49,66,0.025)" stroke="rgba(45,49,66,0.16)" stroke-width="0.8"/>
+      <text x="52" y="132" fill="#4f5d75" font-size="10" font-weight="600" font-family="'Geist Mono', monospace" letter-spacing="0.14em">CUSTOM_REQUISICIONES</text>
+
+      <rect x="296" y="112" width="496" height="104" rx="8" fill="rgba(45,49,66,0.025)" stroke="rgba(45,49,66,0.16)" stroke-width="0.8"/>
+      <text x="312" y="132" fill="#4f5d75" font-size="10" font-weight="600" font-family="'Geist Mono', monospace" letter-spacing="0.14em">ALISTAMIENTO</text>
+
+      <rect x="264" y="248" width="256" height="232" rx="8" fill="rgba(45,49,66,0.025)" stroke="rgba(45,49,66,0.16)" stroke-width="0.8"/>
+      <text x="280" y="268" fill="#4f5d75" font-size="10" font-weight="600" font-family="'Geist Mono', monospace" letter-spacing="0.14em">COMPRA</text>
+
+      <rect x="264" y="496" width="256" height="104" rx="8" fill="rgba(45,49,66,0.025)" stroke="rgba(45,49,66,0.16)" stroke-width="0.8"/>
+      <text x="280" y="516" fill="#4f5d75" font-size="10" font-weight="600" font-family="'Geist Mono', monospace" letter-spacing="0.14em">RECEPCIÓN</text>
+
+      <rect x="604" y="248" width="236" height="352" rx="8" fill="rgba(45,49,66,0.025)" stroke="rgba(45,49,66,0.16)" stroke-width="0.8"/>
+      <text x="614" y="264" fill="#4f5d75" font-size="10" font-weight="600" font-family="'Geist Mono', monospace" letter-spacing="0.14em">ENTREGA ·</text>
+      <text x="614" y="277" fill="#4f5d75" font-size="10" font-weight="600" font-family="'Geist Mono', monospace" letter-spacing="0.14em">DEVOLUCIÓN</text>
+
+      <!-- ========== Connectors ========== -->
+      <!-- 1. Requisición → Cola -->
+      <line x1="212" y1="164" x2="310" y2="164" stroke="#4f5d75" stroke-width="1.2" marker-end="url(#req-flow-arrow)"/>
+      <!-- 2. Cola → Separar (stock suficiente) -->
+      <line x1="472" y1="172" x2="614" y2="172" stroke="#4f5d75" stroke-width="1.2" marker-end="url(#req-flow-arrow)"/>
+      <!-- 3. Cola → Solicitar compra (falta stock) -->
+      <line x1="392" y1="200" x2="392" y2="286" stroke="#4f5d75" stroke-width="1.2" marker-end="url(#req-flow-arrow)"/>
+      <!-- 4. Solicitar compra → Orden de compra -->
+      <line x1="392" y1="344" x2="392" y2="406" stroke="#4f5d75" stroke-width="1.2" marker-end="url(#req-flow-arrow)"/>
+      <!-- 5. Orden de compra → Etiqueta RC -->
+      <line x1="392" y1="464" x2="392" y2="530" stroke="#4f5d75" stroke-width="1.2" marker-end="url(#req-flow-arrow)"/>
+      <!-- 6. Etiqueta RC → Unidad RC -->
+      <line x1="392" y1="580" x2="392" y2="630" stroke="#eb6c36" stroke-width="1.2" marker-end="url(#req-flow-arrow-accent)"/>
+      <!-- 7. Unidad RC → Cola (return) -->
+      <path d="M336,676 H252 Q244,676 244,668 V236 Q244,228 252,228 H322 Q330,228 330,220 V202" fill="none" stroke="#4f5d75" stroke-width="1.2" stroke-dasharray="5,4" marker-end="url(#req-flow-arrow)"/>
+      <!-- 8. Separar → OUT separado -->
+      <line x1="696" y1="200" x2="696" y2="286" stroke="#4f5d75" stroke-width="1.2" marker-end="url(#req-flow-arrow)"/>
+      <!-- 9. OUT separado → Entregada -->
+      <line x1="696" y1="344" x2="696" y2="410" stroke="#4f5d75" stroke-width="1.2" marker-end="url(#req-flow-arrow)"/>
+      <!-- 10. Entregada → IN de devolución -->
+      <line x1="696" y1="460" x2="696" y2="526" stroke="#4f5d75" stroke-width="1.2" marker-end="url(#req-flow-arrow)"/>
+      <!-- 11. IN de devolución → Unidad RC (return) -->
+      <path d="M696,584 V668 Q696,676 688,676 H450" fill="none" stroke="#4f5d75" stroke-width="1.2" stroke-dasharray="5,4" marker-end="url(#req-flow-arrow)"/>
+
+      <!-- ========== Transition labels ========== -->
+      <!-- 1 -->
+      <text x="262" y="156" fill="#2d3142" font-size="9" font-weight="600" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.06em">ENTRA SOLA</text>
+      <rect x="220" y="169" width="84" height="23" fill="#f5f5f5"/>
+      <text x="262" y="177" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace" text-anchor="middle">_demanda_gestion</text>
+      <text x="262" y="188" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace" text-anchor="middle">&gt; 0</text>
+
+      <!-- 2 -->
+      <text x="543" y="163" fill="#2d3142" font-size="9" font-weight="600" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.06em">STOCK SUFICIENTE</text>
+
+      <!-- 3 -->
+      <text x="400" y="230" fill="#2d3142" font-size="9" font-weight="600" font-family="'Geist Mono', monospace" letter-spacing="0.06em">FALTA STOCK</text>
+      <text x="400" y="242" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace">ALI-05</text>
+
+      <!-- 4 -->
+      <text x="400" y="370" fill="#2d3142" font-size="9" font-weight="600" font-family="'Geist Mono', monospace" letter-spacing="0.06em">ENVIAR A COMPRA</text>
+      <text x="400" y="382" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace">action_enviar_a_compra</text>
+
+      <!-- 5 -->
+      <rect x="398" y="482" width="70" height="24" fill="#f5f5f5"/>
+      <text x="400" y="491" fill="#2d3142" font-size="9" font-weight="600" font-family="'Geist Mono', monospace" letter-spacing="0.06em">GENERAR</text>
+      <text x="400" y="503" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace">etiquetas RC</text>
+
+      <!-- 6 -->
+      <text x="400" y="610" fill="#2d3142" font-size="9" font-weight="600" font-family="'Geist Mono', monospace" letter-spacing="0.06em">ESCANEAR + VALIDAR</text>
+      <text x="400" y="622" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace">mark_in_progress · _action_done</text>
+
+      <!-- 7 -->
+      <text x="236" y="396" fill="#2d3142" font-size="9" font-weight="600" font-family="'Geist Mono', monospace" text-anchor="end" letter-spacing="0.06em">VUELVE A LA COLA</text>
+      <text x="236" y="408" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace" text-anchor="end">recepcionado − separado</text>
+      <text x="236" y="419" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace" text-anchor="end">− entregado</text>
+      <text x="236" y="430" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace" text-anchor="end">source='recepcion'</text>
+
+      <!-- 9 -->
+      <text x="704" y="370" fill="#2d3142" font-size="9" font-weight="600" font-family="'Geist Mono', monospace" letter-spacing="0.06em">ESCANEAR + VALIDAR</text>
+      <text x="704" y="382" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace">entrega_scan_unit</text>
+      <text x="704" y="393" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace">_mark_lot_items_delivered</text>
+
+      <!-- 10 -->
+      <text x="704" y="490" fill="#2d3142" font-size="9" font-weight="600" font-family="'Geist Mono', monospace" letter-spacing="0.06em">ESCANEAR</text>
+      <text x="704" y="502" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace">devolucion_scan_unit</text>
+
+      <!-- 11 -->
+      <text x="572" y="668" fill="#2d3142" font-size="9" font-weight="600" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.06em">VALIDAR</text>
+      <text x="572" y="690" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace" text-anchor="middle">_process_rc_returns</text>
+
+      <!-- ========== Nodes ========== -->
+      <!-- Origen: Requisición aprobada -->
+      <rect x="52" y="144" width="160" height="56" rx="3" fill="#f5f5f5"/>
+      <rect x="52" y="144" width="160" height="56" rx="3" fill="rgba(79,93,117,0.12)" stroke="#7a8399" stroke-width="1"/>
+      <rect x="52" y="144" width="4" height="56" fill="#4f5d75"/>
+      <text x="134" y="166" fill="#2d3142" font-size="13" font-weight="600" font-family="'Geist', sans-serif" text-anchor="middle">Requisición aprobada</text>
+      <text x="134" y="181" fill="#4f5d75" font-size="9" font-family="'Geist Mono', monospace" text-anchor="middle">material_electrico</text>
+      <text x="134" y="192" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace" text-anchor="middle">estado = aprobado</text>
+
+      <!-- Proceso: Cola de Alistamiento -->
+      <rect x="312" y="144" width="160" height="56" rx="3" fill="#ffffff" stroke="#2d3142" stroke-width="1.4"/>
+      <text x="392" y="168" fill="#2d3142" font-size="13" font-weight="600" font-family="'Geist', sans-serif" text-anchor="middle">Cola de Alistamiento</text>
+      <text x="392" y="185" fill="#4f5d75" font-size="9" font-family="'Geist Mono', monospace" text-anchor="middle">_domain_gestion_pendiente</text>
+
+      <!-- Proceso: Separar stock -->
+      <rect x="616" y="144" width="160" height="56" rx="3" fill="#ffffff" stroke="#2d3142" stroke-width="1.4"/>
+      <text x="696" y="164" fill="#2d3142" font-size="13" font-weight="600" font-family="'Geist', sans-serif" text-anchor="middle">Separar stock</text>
+      <text x="696" y="179" fill="#4f5d75" font-size="9" font-family="'Geist Mono', monospace" text-anchor="middle">confirm_alistamiento</text>
+      <text x="696" y="191" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace" text-anchor="middle">pase 1 validar · pase 2 crear</text>
+
+      <!-- Proceso: Solicitar compra -->
+      <rect x="280" y="288" width="224" height="56" rx="3" fill="#ffffff" stroke="#2d3142" stroke-width="1.4"/>
+      <text x="392" y="308" fill="#2d3142" font-size="13" font-weight="600" font-family="'Geist', sans-serif" text-anchor="middle">Solicitar compra</text>
+      <text x="392" y="323" fill="#4f5d75" font-size="9" font-family="'Geist Mono', monospace" text-anchor="middle">_solicitar_compra_desde_alistamiento</text>
+      <text x="392" y="335" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace" text-anchor="middle">estado = solicitud_compra</text>
+
+      <!-- Documento: Orden de compra -->
+      <path d="M316,408 H456 L468,420 V464 H316 Z" fill="#ffffff" stroke="#2d3142" stroke-width="1.2"/>
+      <path d="M456,408 V420 H468" fill="none" stroke="#2d3142" stroke-width="1"/>
+      <text x="392" y="423" fill="#2e5aa8" font-size="8" font-weight="600" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.08em">PURCHASE.ORDER</text>
+      <text x="392" y="442" fill="#2d3142" font-size="13" font-weight="600" font-family="'Geist', sans-serif" text-anchor="middle">Orden de compra</text>
+      <text x="392" y="457" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace" text-anchor="middle">línea con requisition_item_id</text>
+
+      <!-- Estado: Etiqueta RC pending -->
+      <rect x="316" y="532" width="152" height="48" rx="24" fill="#f5f5f5"/>
+      <rect x="316" y="532" width="152" height="48" rx="24" fill="rgba(45,49,66,0.05)" stroke="#4f5d75" stroke-width="1"/>
+      <text x="392" y="551" fill="#2d3142" font-size="13" font-weight="600" font-family="'Geist', sans-serif" text-anchor="middle">Etiqueta RC</text>
+      <text x="392" y="564" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace" text-anchor="middle">stock.rc.label.pending</text>
+      <text x="392" y="574" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace" text-anchor="middle">state = pending</text>
+
+      <!-- Modelo: Unidad RC (focal, outside process zones) -->
+      <path d="M336,640 A56,8 0 0 1 448,640 V712 A56,8 0 0 1 336,712 Z" fill="#f5f5f5"/>
+      <path d="M336,640 A56,8 0 0 1 448,640 V712 A56,8 0 0 1 336,712 Z" fill="rgba(235,108,54,0.10)" stroke="#eb6c36" stroke-width="1.4"/>
+      <path d="M336,640 A56,8 0 0 0 448,640" fill="none" stroke="#eb6c36" stroke-width="1.4"/>
+      <text x="392" y="674" fill="#2d3142" font-size="13" font-weight="600" font-family="'Geist', sans-serif" text-anchor="middle">Unidad RC</text>
+      <text x="392" y="688" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace" text-anchor="middle">stock.lot.item</text>
+      <text x="392" y="699" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace" text-anchor="middle">stock.reception.record</text>
+
+      <!-- Documento: OUT separado -->
+      <path d="M620,288 H760 L772,300 V344 H620 Z" fill="#ffffff" stroke="#2d3142" stroke-width="1.2"/>
+      <path d="M760,288 V300 H772" fill="none" stroke="#2d3142" stroke-width="1"/>
+      <text x="696" y="303" fill="#2e5aa8" font-size="8" font-weight="600" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.08em">STOCK.PICKING</text>
+      <text x="696" y="322" fill="#2d3142" font-size="13" font-weight="600" font-family="'Geist', sans-serif" text-anchor="middle">OUT separado</text>
+      <text x="696" y="337" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace" text-anchor="middle">separado_en_fisico = True</text>
+
+      <!-- Estado: Entregada a la OT -->
+      <rect x="624" y="412" width="144" height="48" rx="24" fill="#f5f5f5"/>
+      <rect x="624" y="412" width="144" height="48" rx="24" fill="rgba(45,49,66,0.05)" stroke="#4f5d75" stroke-width="1"/>
+      <text x="696" y="433" fill="#2d3142" font-size="13" font-weight="600" font-family="'Geist', sans-serif" text-anchor="middle">Entregada a la OT</text>
+      <text x="696" y="448" fill="#4f5d75" font-size="9" font-family="'Geist Mono', monospace" text-anchor="middle">is_delivered</text>
+
+      <!-- Documento: IN de devolución -->
+      <path d="M620,528 H760 L772,540 V584 H620 Z" fill="#ffffff" stroke="#2d3142" stroke-width="1.2"/>
+      <path d="M760,528 V540 H772" fill="none" stroke="#2d3142" stroke-width="1"/>
+      <text x="696" y="543" fill="#2e5aa8" font-size="8" font-weight="600" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.08em">STOCK.PICKING</text>
+      <text x="696" y="562" fill="#2d3142" font-size="13" font-weight="600" font-family="'Geist', sans-serif" text-anchor="middle">IN de devolución</text>
+      <text x="696" y="577" fill="#4f5d75" font-size="9" font-family="'Geist Mono', monospace" text-anchor="middle">x_devolucion_scan</text>
+    </svg>
+  </main>
+</body>
+</html>

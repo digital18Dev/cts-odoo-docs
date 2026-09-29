@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OC impresa → escaneo → recepción pendiente</title>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --color-paper:   #f5f5f5;
+      --color-ink:     #2d3142;
+      --color-muted:   #4f5d75;
+      --color-accent:  #eb6c36;
+      --font-sans:     'Geist', system-ui, sans-serif;
+      --font-serif:    'Instrument Serif', serif;
+      --font-mono:     'Geist Mono', ui-monospace, monospace;
+    }
+    body {
+      font-family: var(--font-sans);
+      background: var(--color-paper);
+      color: var(--color-ink);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 2rem;
+    }
+    .frame { max-width: 1180px; width: 100%; }
+    .eyebrow {
+      font-family: var(--font-mono);
+      font-size: 0.66rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--color-muted);
+      margin-bottom: 0.5rem;
+    }
+    h1 {
+      font-family: var(--font-serif);
+      font-size: clamp(1.5rem, 2.4vw + 0.75rem, 2rem);
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      color: var(--color-ink);
+      margin-bottom: 1rem;
+    }
+    svg { width: 100%; min-width: 960px; display: block; }
+  </style>
+</head>
+<body>
+  <main class="frame">
+    <p class="eyebrow">Architecture · flujos funcionales · fit · balanced</p>
+    <h1>OC impresa → escaneo → recepción pendiente</h1>
+
+    <svg viewBox="0 0 1104 288" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="oc-flow-title oc-flow-desc">
+      <title id="oc-flow-title">OC impresa → escaneo → recepción pendiente</title>
+      <desc id="oc-flow-desc">El reporte Orden de Compra CTS de custom_reportes imprime un Code128 con OC.&lt;name&gt;. En bodega se escanea desde stock_barcode por la ruta /stock_barcode/scan_from_main_menu; _route_purchase_order reconoce el prefijo y llama a purchase.order.action_open_reception_scan, que abre la recepción incoming pendiente o la lista si hay varias.</desc>
+      <defs>
+        <marker id="oc-flow-arrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#4f5d75"/></marker>
+        <marker id="oc-flow-arrow-accent" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#eb6c36"/></marker>
+      </defs>
+
+      <rect width="100%" height="100%" fill="#f5f5f5"/>
+
+      <!-- ========== Legend strip (top) ========== -->
+      <text x="40" y="44" fill="#2d3142" font-size="10" font-weight="600" font-family="'Geist Mono', monospace" letter-spacing="0.14em">LEYENDA</text>
+
+      <!-- Documento -->
+      <path d="M128,30 H142 L148,36 V50 H128 Z" fill="#ffffff" stroke="#2d3142" stroke-width="1"/>
+      <path d="M142,30 V36 H148" fill="none" stroke="#2d3142" stroke-width="1"/>
+      <text x="156" y="45" fill="#2d3142" font-size="11" font-family="'Geist', sans-serif">Documento</text>
+
+      <!-- Proceso -->
+      <rect x="248" y="32" width="36" height="18" rx="3" fill="#ffffff" stroke="#2d3142" stroke-width="1.4"/>
+      <text x="292" y="45" fill="#2d3142" font-size="11" font-family="'Geist', sans-serif">Proceso</text>
+
+      <!-- Resultado -->
+      <path d="M368,30 H382 L388,36 V50 H368 Z" fill="rgba(235,108,54,0.10)" stroke="#eb6c36" stroke-width="1.2"/>
+      <path d="M382,30 V36 H388" fill="none" stroke="#eb6c36" stroke-width="1"/>
+      <text x="396" y="45" fill="#2d3142" font-size="11" font-family="'Geist', sans-serif">Resultado del flujo</text>
+
+      <!-- Transición -->
+      <text x="536" y="40" fill="#2d3142" font-size="9" font-weight="600" font-family="'Geist Mono', monospace" letter-spacing="0.06em">VERBO</text>
+      <text x="536" y="51" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace">método técnico</text>
+      <text x="616" y="45" fill="#2d3142" font-size="11" font-family="'Geist', sans-serif">Transición</text>
+
+      <line x1="40" y1="72" x2="1064" y2="72" stroke="rgba(45,49,66,0.12)" stroke-width="0.8"/>
+
+      <!-- ========== Zones (by module) ========== -->
+      <rect x="40" y="96" width="208" height="168" rx="8" fill="rgba(45,49,66,0.025)" stroke="rgba(45,49,66,0.16)" stroke-width="0.8"/>
+      <text x="56" y="116" fill="#4f5d75" font-size="10" font-weight="600" font-family="'Geist Mono', monospace" letter-spacing="0.14em">CUSTOM_REPORTES</text>
+      <text x="56" y="129" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace">imprime</text>
+
+      <rect x="272" y="96" width="544" height="168" rx="8" fill="rgba(45,49,66,0.025)" stroke="rgba(45,49,66,0.16)" stroke-width="0.8"/>
+      <text x="288" y="116" fill="#4f5d75" font-size="10" font-weight="600" font-family="'Geist Mono', monospace" letter-spacing="0.14em">CUSTOM_BARCODE_ACTIVOS</text>
+      <text x="288" y="129" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace">lee y enruta</text>
+
+      <rect x="840" y="96" width="224" height="168" rx="8" fill="rgba(45,49,66,0.025)" stroke="rgba(45,49,66,0.16)" stroke-width="0.8"/>
+      <text x="856" y="116" fill="#4f5d75" font-size="10" font-weight="600" font-family="'Geist Mono', monospace" letter-spacing="0.14em">STOCK</text>
+      <text x="856" y="129" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace">recepción nativa</text>
+
+      <!-- ========== Connectors ========== -->
+      <line x1="224" y1="184" x2="294" y2="184" stroke="#4f5d75" stroke-width="1.2" marker-end="url(#oc-flow-arrow)"/>
+      <line x1="480" y1="184" x2="606" y2="184" stroke="#4f5d75" stroke-width="1.2" marker-end="url(#oc-flow-arrow)"/>
+      <line x1="792" y1="184" x2="870" y2="184" stroke="#eb6c36" stroke-width="1.2" marker-end="url(#oc-flow-arrow-accent)"/>
+
+      <!-- ========== Transition labels ========== -->
+      <rect x="231" y="167" width="56" height="12" fill="#f5f5f5"/>
+      <text x="259" y="176" fill="#2d3142" font-size="9" font-weight="600" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.06em">ESCANEAR</text>
+      <rect x="229" y="190" width="60" height="22" fill="#f5f5f5"/>
+      <text x="259" y="198" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace" text-anchor="middle">Code128</text>
+      <text x="259" y="209" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace" text-anchor="middle">OC.&lt;name&gt;</text>
+
+      <rect x="517" y="167" width="52" height="12" fill="#f5f5f5"/>
+      <text x="543" y="176" fill="#2d3142" font-size="9" font-weight="600" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.06em">ENRUTAR</text>
+      <rect x="489" y="190" width="108" height="11" fill="#f5f5f5"/>
+      <text x="543" y="198" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace" text-anchor="middle">_route_purchase_order</text>
+
+      <!-- ========== Nodes ========== -->
+      <!-- Documento: Reporte Orden de Compra CTS -->
+      <path d="M64,148 H212 L224,160 V220 H64 Z" fill="#ffffff" stroke="#2d3142" stroke-width="1.2"/>
+      <path d="M212,148 V160 H224" fill="none" stroke="#2d3142" stroke-width="1"/>
+      <text x="144" y="164" fill="#2e5aa8" font-size="8" font-weight="600" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.08em">QWEB-PDF</text>
+      <text x="144" y="183" fill="#2d3142" font-size="13" font-weight="600" font-family="'Geist', sans-serif" text-anchor="middle">Orden de Compra</text>
+      <text x="144" y="198" fill="#2d3142" font-size="13" font-weight="600" font-family="'Geist', sans-serif" text-anchor="middle">CTS</text>
+      <text x="144" y="212" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace" text-anchor="middle">cts_external_layout.xml</text>
+
+      <!-- Proceso: Escaneo en bodega -->
+      <rect x="296" y="148" width="184" height="72" rx="3" fill="#ffffff" stroke="#2d3142" stroke-width="1.4"/>
+      <text x="388" y="174" fill="#2d3142" font-size="13" font-weight="600" font-family="'Geist', sans-serif" text-anchor="middle">Escaneo en bodega</text>
+      <text x="388" y="191" fill="#4f5d75" font-size="9" font-family="'Geist Mono', monospace" text-anchor="middle">stock_barcode</text>
+      <text x="388" y="206" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace" text-anchor="middle">/stock_barcode/scan_from_main_menu</text>
+      <text x="388" y="246" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace" text-anchor="middle">menú principal · menú Recepción · lista de OC</text>
+
+      <!-- Proceso: Abrir recepción -->
+      <rect x="608" y="148" width="184" height="72" rx="3" fill="#ffffff" stroke="#2d3142" stroke-width="1.4"/>
+      <text x="700" y="174" fill="#2d3142" font-size="13" font-weight="600" font-family="'Geist', sans-serif" text-anchor="middle">Abrir recepción</text>
+      <text x="700" y="191" fill="#4f5d75" font-size="9" font-family="'Geist Mono', monospace" text-anchor="middle">purchase.order</text>
+      <text x="700" y="206" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace" text-anchor="middle">.action_open_reception_scan</text>
+
+      <!-- Resultado: Recepción pendiente -->
+      <path d="M872,148 H1028 L1040,160 V220 H872 Z" fill="#f5f5f5"/>
+      <path d="M872,148 H1028 L1040,160 V220 H872 Z" fill="rgba(235,108,54,0.10)" stroke="#eb6c36" stroke-width="1.4"/>
+      <path d="M1028,148 V160 H1040" fill="none" stroke="#eb6c36" stroke-width="1"/>
+      <text x="956" y="164" fill="#2e5aa8" font-size="8" font-weight="600" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.08em">STOCK.PICKING · INCOMING</text>
+      <text x="956" y="186" fill="#2d3142" font-size="13" font-weight="600" font-family="'Geist', sans-serif" text-anchor="middle">Recepción pendiente</text>
+      <text x="956" y="204" fill="#4f5d75" font-size="9" font-family="'Geist', sans-serif" text-anchor="middle">o lista si hay varias</text>
+    </svg>
+  </main>
+</body>
+</html>
